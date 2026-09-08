@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite its exact version."
+title: QC Transfer Gap
+type: software
+version: 0.1.0
+authors:
+  - given-names: Emmanouil
+    family-names: Gionanidis
+repository-code: https://github.com/gionanide/qc-transfer-gap

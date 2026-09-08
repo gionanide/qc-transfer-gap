@@ -1,0 +1,15 @@
+schema_version: 1
+units:
+  volume: mL
+  ef: percentage_points
+ventricle: RV
+budgets:
+- 0.1
+- 0.2
+bootstrap_replicates: 5000
+label: Exploratory; unadjusted paired patient-bootstrap intervals
+scores:
+- column: example_qc
+  direction: higher
+cohort_seeds:
+  SYNTHETIC: 20260907
