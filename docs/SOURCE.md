@@ -1,5 +1,7 @@
 # Source and packaging provenance
 
+The release scope is **analysis code, derived results, and published baselines**. The current package contains the analysis functions and published review-policy implementations, and produces derived result files from user-supplied records. It does not distribute checkpoint binaries. The fixed models referenced in the methods are the models evaluated in the experiments.
+
 The reusable package wraps the existing RV review evaluator. The scientific functions below are copied byte-for-byte from the preceding local candidate; no study results were recomputed for this packaging task.
 
 | File | SHA-256 |

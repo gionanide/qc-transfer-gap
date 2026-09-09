@@ -4,6 +4,8 @@ Evaluate whether a segmentation quality-control score helps prioritize review of
 
 Supply patient-level predictions, reference measurements, and your existing QC scores. The package compares five review policies at the same workload and writes retained-error estimates, paired bootstrap intervals, and review allocations. It uses the existing study evaluator with a small Python API and command-line interface. No medical images, model weights, PyTorch, or GPU are needed.
 
+The release scope is **analysis code, derived results, and published baselines**. This package provides the analysis code and implementations of the published review-policy baselines; derived results are generated from the records supplied to the evaluator, as described under [Outputs](#outputs). **Checkpoint binaries for the fixed models evaluated in the study are not distributed.** References to those fixed models describe the experimental evaluation.
+
 ## Install
 
 Use Python **3.11 or later**. From a checkout:
