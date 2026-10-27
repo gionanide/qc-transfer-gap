@@ -61,7 +61,6 @@ def main():
     net = build_model(arch).to(device)
     loss_fn = DiceCELoss(to_onehot_y=True, softmax=True)
     opt = torch.optim.Adam(net.parameters(), lr=C.LR)
-    sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=C.MAX_EPOCHS)
     dice_metric = DiceMetric(include_background=False, reduction="mean")
 
     # torch>=2.3 API. For older torch use: torch.cuda.amp.GradScaler(enabled=use_amp)
@@ -81,7 +80,6 @@ def main():
             scaler.step(opt)
             scaler.update()
             running += loss.item()
-        sched.step()
         train_loss = running / len(train_loader)
 
         net.eval(); dice_metric.reset()

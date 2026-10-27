@@ -17,14 +17,14 @@
   ],
   "training": {
     "epochs": 100,
-    "batch_size": 16,
+    "batch_size": 8,
     "optimizer": "Adam",
     "learning_rate": 0.001,
     "loss": "DiceCELoss(to_onehot_y=True, softmax=True)",
-    "scheduler": "CosineAnnealingLR(T_max=100)",
-    "validation_fraction_in_preserved_config": 0.15,
+    "scheduler": "none (constant learning rate)",
+    "validation_fraction": 0.2,
     "stratified_split_seed": 42,
-    "augmentation": "independent horizontal and vertical flips",
+    "augmentation": "random horizontal and vertical flips and random 90-degree rotations",
     "deployment_checkpoint": "final epoch; not best-by-EF"
   },
   "note": "Unspecified constructor parameters use the pinned MONAI defaults."

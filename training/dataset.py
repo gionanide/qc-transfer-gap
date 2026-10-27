@@ -145,6 +145,9 @@ class ACDCSliceDataset(Dataset):
                 img = np.ascontiguousarray(img[:, ::-1]); gt = np.ascontiguousarray(gt[:, ::-1])
             if random.random() < 0.5:
                 img = np.ascontiguousarray(img[::-1, :]); gt = np.ascontiguousarray(gt[::-1, :])
+            k = random.randint(0, 3)
+            if k:
+                img = np.ascontiguousarray(np.rot90(img, k)); gt = np.ascontiguousarray(np.rot90(gt, k))
 
         img_t = torch.from_numpy(img).unsqueeze(0)        # (1, H, W)
         gt_t = torch.from_numpy(gt).long()                # (H, W)

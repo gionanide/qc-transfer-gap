@@ -40,7 +40,6 @@ def main():
     net = build_unet().to(device)
     loss_fn = DiceCELoss(to_onehot_y=True, softmax=True)
     opt = torch.optim.Adam(net.parameters(), lr=C.LR)
-    sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=C.MAX_EPOCHS)
     dice_metric = DiceMetric(include_background=False, reduction="mean")
 
     best_ef_mae = float("inf")
@@ -56,7 +55,6 @@ def main():
             loss.backward()
             opt.step()
             running += loss.item()
-        sched.step()
         train_loss = running / len(train_loader)
 
         # --- per-slice Dice on val ---
