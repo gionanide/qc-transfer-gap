@@ -1,0 +1,5 @@
+# nnU-Net packages used by the completed C2 runs, in addition to the main lock.
+nnunetv2==2.8.1
+dynamic-network-architectures==0.4.4
+batchgenerators==0.25.3
+batchgeneratorsv2==0.3.5
