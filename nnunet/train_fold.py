@@ -1,4 +1,4 @@
-"""C2 training entry point with the recorded fold seed; never invoked by packaging."""
+"""nnU-Net training entry point with the recorded fold seed; never invoked by packaging."""
 import argparse,random
 import numpy as np
 import torch

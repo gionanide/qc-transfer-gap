@@ -3,7 +3,7 @@ import argparse,json,shutil
 from pathlib import Path
 
 def convert(development_root,output):
-    if any('refined' in part.lower() for part in Path(development_root).parts):raise ValueError('C2 requires the original ACDC labels')
+    if any('refined' in part.lower() for part in Path(development_root).parts):raise ValueError('The nnU-Net baseline requires the original ACDC labels')
     paths=sorted(p for p in Path(development_root).glob('patient*') if (p/'Info.cfg').is_file())
     if len(paths)!=100:raise ValueError('Exactly the original 100-patient development partition is required')
     images=output/'imagesTr';labels=output/'labelsTr';images.mkdir(parents=True,exist_ok=True);labels.mkdir(exist_ok=True)

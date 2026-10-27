@@ -1,4 +1,4 @@
-"""Exact Step 5 score-evaluation statistics with configurable spread-score names."""
+"""Score-evaluation statistics with configurable spread-score names."""
 import numpy as np
 from scipy import stats
 from .statistics import partial

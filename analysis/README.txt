@@ -1,8 +1,7 @@
-QC TRANSFER GAP: REVISION ANALYSIS ADDITIONS
+QC TRANSFER GAP: ANALYSIS SCRIPTS
 
-Overlay these folders onto the existing repository and install that repository
-with python -m pip install . . The budget-matched review package already there
-is imported by these additions; it is not repeated in this archive.
+Install the repository with python -m pip install . . The scripts import the
+budget-matched review package in src/.
 
 PRIVATE INPUT CONTRACT
 Supply your own CSV, with one row per cohort, patient_id, architecture and
@@ -14,7 +13,7 @@ voxel volume. Optional stored EDV, SV and EF absolute-error columns and SV
 volumes are retained, after consistency checks, to preserve the exact saved
 floating-point inputs. Otherwise they are derived from the measurement columns.
 
-The four submitted scores are softmax_entropy,
+The four scores are softmax_entropy,
 measurement_aware_softmax_entropy, mc_dropout and
 measurement_aware_mc_dropout. Scores are already patient-level means over
 the two phases. Larger scores mean higher review priority. Use ACDC and MNMS
@@ -46,23 +45,24 @@ score medians, after taking each score's architecture median. It is not an
 architecture range. RF is the un-clipped discrete Eq.13 recovered fraction.
 
 BOOTSTRAP, TIES AND SEEDS
-Rank ties use average ranks, recomputed inside each resample. Step 1 rank and
-partial kernels and its per-architecture CRC32 seeds are preserved. The joint
-RF bootstrap uses the Step 2 cell seed, shared across models and policies;
+Rank ties use average ranks, recomputed inside each resample. The rank and
+partial kernels use fixed per-architecture CRC32 seeds. The joint RF
+bootstrap uses a fixed cell seed, shared across models and policies;
 stable patient-ID ordering precedes the original draw occurrence order, then
 the unchanged stable descending-score kernel. AURCs for policy, random and
 true-error oracle are recomputed inside each draw. Undefined RF draws use the
 paper machine-epsilon guard and are counted, not stabilised or clipped.
 Partial architecture-median intervals use the same joint cell seeds as the
-Dice-oracle intervals. Step 4 and Step 5 use the recorded shared cohort draws
-and vendor seed recipes. Seed ledgers are generated at runtime.
+Dice-oracle intervals. The vendor, tolerance and spread analyses use fixed
+shared cohort draws and vendor seed recipes. Seed ledgers are generated at runtime.
 
 SENSITIVITIES WITHOUT COMMITTED IDS
 --sensitivity exclude_pathological_10_rows requires the private frozen
 pathological_row boolean column, shared across ventricles for the four fixed
 models. --sensitivity exclude_reference_3 requires a private exclude_reference
 boolean column and removes flagged rows on MNMS only. No ID lists are stored.
-C2's own pathological-ratio flags must be computed from C2's predictions;
+The nnU-Net baseline's pathological-ratio flags must be computed from its
+own predictions;
 do not reuse another model's flagged rows. Relative SV correlations exclude
 reference SV <= 0 and undefined ratios only; an exclusion-count file is written.
 
@@ -76,7 +76,7 @@ The result supplies analysis.single_grid. M&Ms references are remapped from
 fills native pixels outside a crop with background, and resizes hard labels
 with nearest neighbour. It does not reconstruct cropped-away anatomy.
 Score stride two means the fixed [::2,::2] in-plane decimation, without z
-decimation. The single-grid reanalysis keeps those submitted scores fixed.
+decimation. The single-grid analysis keeps the original scores fixed.
 
 SPREAD SCORES
 MC input columns are cohort, architecture, patient_id, ventricle,
@@ -85,13 +85,12 @@ There must be twenty passes. EF/EDV/SV SD uses ddof=0; EF IQR uses linear
 quartiles. Direct entropy comparisons use new_mc_dropout and
 new_measurement_aware_mc_dropout from the SAME new passes, not stored old MC
 entropy. The deterministic deployed measurements remain the error targets.
-The original Step 5 statistic kernel and shared draws are preserved for spread
-scores, including paired RF(Dice)-RF(EF-SD), paired new-entropy comparisons,
+The same statistic kernel and shared draws are used for the spread scores, including paired RF(Dice)-RF(EF-SD), paired new-entropy comparisons,
 and Siemens/non-Siemens. The numerical four-model mean uses arithmetic means
 of the four EF/EDV/SV predictions. Its Dice-dependent analyses are undefined.
-For C2 fold spread, pass --fold-input to analysis.disagreement. That private
+For the nnU-Net fold spread, pass --fold-input to analysis.disagreement. That private
 table supplies cohort, ventricle, patient_id, fold, pred_edv_ml, pred_esv_ml
-and pred_ef. The deployed C2 input must be the native probability ensemble.
+and pred_ef. The deployed nnU-Net input must be the native probability ensemble.
 
 TOLERANCE
 Review counts are floor(budget*n), with prediction-only plausibility flags
@@ -101,7 +100,5 @@ not attained before full review and remains in its percentile distribution.
 The 10% trimmed mean removes floor(0.10*n_retained) from each tail.
 
 PORTABILITY
-The mathematical kernels were copied from the executed revision analyses.
-The CLI/data-loading adapters are new portable wrappers, validated against
-saved estimates outside the archive. source_provenance.json records source
-hashes. No manuscript, checkpoint, or pre-existing result is changed.
+The command-line and data-loading adapters are portable wrappers around the
+mathematical kernels and were validated against the saved study estimates.

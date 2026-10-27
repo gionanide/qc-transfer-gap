@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# C2 original labels, fixed plans, locally generated folds; run from repo root.
+# nnU-Net baseline: original labels, fixed plans, locally generated folds; run from repo root.
 set -euo pipefail
 : "${ACDC_DEVELOPMENT_ROOT:?Set the local original-label development folder}"
 export nnUNet_raw="${nnUNet_raw:-work/nnUNet_raw}"
@@ -29,5 +29,5 @@ done
 #   nnUNetv2_predict -i "$INFERENCE_IMAGES" -o "outputs/nnunet/fold_$fold" -d 701 -c 2d -tr QualificationNNUNetTrainer -f "$fold" -chk checkpoint_final.pth --save_probabilities -npp 1 -nps 1 -device cpu
 # done
 # Average the separately exported native probabilities with the official
-# ensemble, matching C2. This preserves each fold's native export geometry.
+# ensemble, as in the study. This preserves each fold's native export geometry.
 # nnUNetv2_ensemble -i outputs/nnunet/fold_0 outputs/nnunet/fold_1 outputs/nnunet/fold_2 outputs/nnunet/fold_3 outputs/nnunet/fold_4 -o outputs/nnunet/ensemble -np 1 --save_npz

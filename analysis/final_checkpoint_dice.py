@@ -1,4 +1,4 @@
-"""Table S11: stored final checkpoints on a reconstructed seed-42 80/20 split."""
+"""Supplementary Table S11: final-checkpoint Dice on the seed-42 80/20 development split."""
 import os
 for n in ('OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS'):os.environ[n]='1'
 os.environ['CUDA_VISIBLE_DEVICES']='-1'

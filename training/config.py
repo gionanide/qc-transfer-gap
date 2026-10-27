@@ -1,4 +1,4 @@
-"""Portable paths; preserved training constants. S11 uses a separate reconstruction."""
+"""Portable paths and training constants."""
 import os
 from pathlib import Path
 DATA_ROOT=Path(os.environ.get('QC_DATA_ROOT','data/ACDC/database'))

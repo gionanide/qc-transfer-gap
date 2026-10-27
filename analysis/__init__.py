@@ -1,1 +1,1 @@
-"""IEEE Access revision analysis entry points."""
+"""Analyses of the QC transfer gap."""

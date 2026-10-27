@@ -38,5 +38,5 @@
     "augmentation": "independent horizontal and vertical flips",
     "deployment_checkpoint": "final epoch; not best-by-EF"
   },
-  "note": "Unspecified constructor parameters use the pinned MONAI defaults. The separate Table S11 split reconstruction uses validation_fraction=0.20."
+  "note": "Unspecified constructor parameters use the pinned MONAI defaults."
 }

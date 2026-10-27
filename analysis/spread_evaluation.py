@@ -1,4 +1,4 @@
-"""Step 5 joint patient resampling for spread scores and paired score comparisons."""
+"""Joint patient resampling for spread scores and paired score comparisons."""
 import hashlib
 import numpy as np
 from . import spread_statistics as kernel

@@ -52,7 +52,7 @@ def infer(a):
             gate['score_changes_from_mask_flips']={v:{'plain':new_support_scores[v,False]-new_scores[v,False],'measurement_aware':new_support_scores[v,True]-new_scores[v,True]} for v in ['RV','LV']}
             difference=max(abs(old_scores[v,False]-new_scores[v,False]) for v in ['RV','LV'])
             gate['stored_mask_entropy_difference']=difference
-            if not np.isfinite(difference) or difference>1e-5:raise RuntimeError('Stored-mask entropy gate failed')
+            if not np.isfinite(difference) or difference>1e-5:raise RuntimeError('Stored-mask entropy check failed')
     scores=entropy_scores(entropy,support);rows=[];passes=[]
     for vent,label in [('RV',1),('LV',3)]:rows.append(dict(base,ventricle=vent,native_volume_ml=float((native==label).sum()*sx*sy*sz/1000),softmax_entropy=scores[vent,False],measurement_aware_softmax_entropy=scores[vent,True]))
     if a.save_masks:

@@ -1,25 +1,24 @@
 FILES.txt	File inventory and table/figure mapping; this file
-SHA256SUMS	Exactly nine verified checkpoint SHA-256 identities; binaries are separate under weights/; final models and nnU-Net baseline
+SHA256SUMS	Exactly nine verified checkpoint SHA-256 identities; binaries are in the v1.0-weights release; final models and nnU-Net baseline
 analysis/README.txt	Private input contract, commands, seeds, ties and scope; Tables IV, VI, S6-S11
 analysis/__init__.py	Package marker; Tables IV, VI and S6-S11
 analysis/disagreement.py	Architecture or nnU-Net-fold measurement SD and numerical-mean evaluation; Fig.1C and measurement-space analyses
 analysis/final_checkpoint_dice.py	CPU evaluation of stored final weights on generated split; S11
 analysis/io.py	Private input validation, sensitivity flags and low CPU/IO priority; shared analysis support
-analysis/mc_spread.py	SD/IQR measurement scores from saved paired MC-pass volumes; MC EF-spread revision analysis
+analysis/mc_spread.py	SD/IQR measurement scores from saved paired MC-pass volumes; MC EF-spread analysis
 analysis/partial_intervals.py	Per-architecture and joint architecture-median partial Spearman intervals; Table IV and S6
 analysis/phase_grid_measurements.py	Measurements from supplied saved masks on processed/native grids; S7
 analysis/policy_kernel.py	Exact tolerance/robust-error/first-attainment extension to existing budget package; Table VI, S9
 analysis/prepare_inputs.py	Adapter for original private RV/LV patient and QC tables; Tables III-IV, S6-S10
-analysis/protocol.py	5000 draws, original CRC32 seed recipes and fixed policies/thresholds; revision tables
+analysis/protocol.py	5000 draws, original CRC32 seed recipes and fixed policies/thresholds; result tables
 analysis/reconstruct_native.py	Exact fixed-model inverse geometry and reference round trip; Methods and S7
 analysis/recovered_fraction.py	Joint paired patient-bootstrap RF and Dice-oracle-minus-score intervals; Tables III-IV
 analysis/reference.py	Reference/Dice-oracle recovered fractions and partial correlations; Table IV and S6
 analysis/relative_errors.py	Absolute and relative EDV/SV correlations, gaps, RF and exclusion counts; S10
 analysis/risk_coverage.py	Original discrete Eq.13 AURC and recovered fraction kernel; Table IV, S6
 analysis/single_grid.py	Submitted, processed-grid and native-grid comparison; S7
-analysis/source_provenance.json	Relative source paths and source hashes, base repository commit and portability changes; revision reproducibility
 analysis/spread_evaluation.py	Joint bootstrap associations, RF, Dice-oracle and new-entropy comparisons, vendor split; measurement-space analyses
-analysis/spread_statistics.py	Exact Step 5 rank/partial/RF statistic kernel; architecture disagreement and MC measurement spread
+analysis/spread_statistics.py	Rank/partial/RF statistic kernel; architecture disagreement and MC measurement spread
 analysis/statistics.py	Preserved rank/partial/RF/percentile kernels; Table IV and S6/S10
 analysis/tolerance.py	Retained tolerance exceedance, robust errors and required budgets; Table VI and S9
 analysis/vendor.py	Official M&Ms vendor subgroup operating points, correlations and RF; S8
@@ -27,17 +26,17 @@ analysis/vendor_kernel.py	Exact vendor operating points, correlations, gap and R
 environment/environment-lock.yml	Original fixed-model environment lock; local installation prefix removed
 environment/nnunet-requirements.txt	Pinned nnU-Net additions to the preserved environment lock; nnU-Net baseline
 nnunet/QualificationNNUNetTrainer.py	Portable class preserving official nnU-Net training core; nnU-Net baseline
-nnunet/README.txt	Original-label C2 protocol, native probability export and processed score grid; nnU-Net baseline
+nnunet/README.txt	Original-label nnU-Net protocol, native probability export and processed score grid; nnU-Net baseline
 nnunet/__init__.py	Package marker; nnU-Net baseline
 nnunet/convert_dataset.py	Original-label development-data conversion; nnU-Net baseline
 nnunet/dataset.json	Data-free modality/label metadata; nnU-Net baseline
 nnunet/generate_splits.py	Generate original patient-grouped stratified folds from local metadata; no stored patient IDs; nnU-Net baseline
-nnunet/plans.json	Frozen C2 plans: original-label 2D nnU-Net architecture, resampling and patch/batch settings
+nnunet/plans.json	Frozen nnU-Net plans: original-label 2D nnU-Net architecture, resampling and patch/batch settings
 nnunet/processed_scores.py	Native probability ensemble to processed-grid Dice and softmax QC; nnU-Net baseline and S7
 nnunet/register_trainer.py	Explicit installation helper for the portable trainer name; nnU-Net baseline
 nnunet/train_fold.py	Recorded fold-seed training command wrapper; nnU-Net baseline
 nnunet/training_inference.sh	Training and five native probability-export/ensemble inference commands; nnU-Net baseline
-training/README.txt	Training, deployment inference and split provenance; fixed models and S11
+training/README.txt	Training, inference and final-checkpoint Dice usage; fixed models and S11
 training/__init__.py	Package marker; fixed-model pipeline
 training/config.py	Portable configuration with preserved 100-epoch training constants; no stored split lists
 training/configs/attnunet.json	Data-free constructor and preserved training constants for attnunet; fixed-model protocol
@@ -45,10 +44,10 @@ training/configs/segresnet.json	Data-free constructor and preserved training con
 training/configs/swinunetr.json	Data-free constructor and preserved training constants for swinunetr; fixed-model protocol
 training/configs/unet.json	Data-free constructor and preserved training constants for unet; fixed-model protocol
 training/dataset.py	Preserved fixed-model training/preprocessing or validation monitor; model definitions and Table S11 support
-training/entropy.py	Exact deterministic entropy precision, stride-two grid and float32 serialization; Tables III-IV and reproduction gate
+training/entropy.py	Exact deterministic entropy precision, stride-two grid and float32 serialization; Tables III-IV and stored-support check
 training/eval_ef.py	Preserved fixed-model training/preprocessing or validation monitor; model definitions and Table S11 support
 training/geometry.py	Exact native/processed grid transforms and inverse; Table S7, Methods native reconstruction
-training/infer.py	Deterministic and MC phase inference, stored-support gate, native pass volumes and hashes; Tables III-IV and MC EF spread
+training/infer.py	Deterministic and MC phase inference, stored-support check, native pass volumes and hashes; Tables III-IV and MC EF spread
 training/model.py	Preserved fixed-model training/preprocessing or validation monitor; model definitions and Table S11 support
 training/model_zoo.py	Preserved fixed-model training/preprocessing or validation monitor; model definitions and Table S11 support
 training/score_functions.py	Original predicted-support and measurement-aware QC score aggregation; Tables III-IV, S6-S10

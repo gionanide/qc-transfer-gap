@@ -1,4 +1,4 @@
-"""Generate the frozen diagnosis-stratified, patient-grouped C2 folds locally."""
+"""Generate the frozen diagnosis-stratified, patient-grouped nnU-Net folds locally."""
 import argparse,json
 from pathlib import Path
 import numpy as np

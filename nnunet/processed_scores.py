@@ -1,4 +1,4 @@
-"""C2 native ensemble probabilities to the paper grid for Dice and entropy.
+"""nnU-Net native ensemble probabilities to the paper grid for Dice and entropy.
 
 Native volumes use the official nnU-Net exported mask. The processed mask
 for Dice is nearest-neighbour resampled from that native hard mask. Each

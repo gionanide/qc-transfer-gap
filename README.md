@@ -2,9 +2,9 @@
 
 Evaluate whether a segmentation quality-control score helps prioritize review of the **RV ejection-fraction measurements** derived from those segmentations.
 
-Supply patient-level predictions, reference measurements, and your existing QC scores. The package compares five review policies at the same workload and writes retained-error estimates, paired bootstrap intervals, and review allocations. It uses the existing study evaluator with a small Python API and command-line interface. No medical images, model weights, PyTorch, or GPU are needed.
+Supply patient-level predictions, reference measurements, and your existing QC scores. The review package compares five review policies at the same workload and writes retained-error estimates, paired bootstrap intervals, and review allocations. It uses the study evaluator with a small Python API and command-line interface, and it needs no medical images, model weights, PyTorch, or GPU.
 
-The release scope is **analysis code, derived results, and published baselines**. This package provides the analysis code and implementations of the published review-policy baselines; derived results are generated from the records supplied to the evaluator, as described under [Outputs](#outputs). **Checkpoint binaries for the fixed models evaluated in the study are not distributed.** References to those fixed models describe the experimental evaluation.
+The repository contains the QC review package, the training and inference code of all models (`training/`), the nnU-Net baseline configuration (`nnunet/`), and the analysis scripts of the study (`analysis/`). **Trained weights:** see the [v1.0-weights release](https://github.com/gionanide/qc-transfer-gap/releases/tag/v1.0-weights); `SHA256SUMS` identifies each file. `FILES.txt` lists every file with the table or figure it produces.
 
 ## Install
 
@@ -14,7 +14,7 @@ Use Python **3.11 or later**. From a checkout:
 python -m pip install .
 ```
 
-Or install directly from GitHub (repository access is required while it is private):
+Or install directly from GitHub:
 
 ```bash
 python -m pip install "git+https://github.com/gionanide/qc-transfer-gap.git"
@@ -54,7 +54,7 @@ Edit `scores` in `review.yaml` to name your score columns, and replace `SYNTHETI
 qc-transfer-gap evaluate --input my_patient_results.csv --config review.yaml --output results/my_review
 ```
 
-See [the complete input contract](docs/INPUT_CONTRACT.md) for optional fields, flags, ties, and invalid-value handling. This is a labelled audit of existing scores: the package does not generate segmentation predictions or QC scores.
+See [the complete input contract](docs/INPUT_CONTRACT.md) for optional fields, flags, ties, and invalid-value handling. This is a labelled audit of existing scores: the review package does not generate segmentation predictions or QC scores (for that, see `training/infer.py`).
 
 ## Python API
 
@@ -98,4 +98,4 @@ python -m pip install ".[test]"
 python -m pytest
 ```
 
-Tests exercise policy arithmetic, malformed inputs, and the installed interface using synthetic data. The repository contains reusable code and examples; study patient records and paper-result reproduction are outside this package. Existing evaluation implementation provenance is recorded in [SOURCE.md](docs/SOURCE.md).
+Tests exercise policy arithmetic, malformed inputs, and the installed interface using synthetic data. The review package contains reusable code and examples; study patient records are not distributed. The training, inference and analysis code is described in `training/README.txt`, `nnunet/README.txt` and `analysis/README.txt`. Existing evaluation implementation provenance is recorded in [SOURCE.md](docs/SOURCE.md).
